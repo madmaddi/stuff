@@ -1,0 +1,34 @@
+<project name="humimeasure" default="compile" basedir=".">
+    <!-- The main class of the project -->
+    <property name="main.class" value="Start"/>
+
+    <!--<property name="jar.file" value="${basedir}/${ant.project.name}.jar"/>-->
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="build.dir" value="${basedir}/bin"/>
+    
+    <path id="run.classpath">
+        <pathelement path="${build.dir}"/>
+    </path>
+    
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" />
+    </target>
+
+    <target name="run-hello" depends="compile" description="Run the program">
+        <java classname="${main.class}" classpathref="run.classpath" />
+    </target>
+<!--
+    <target name="jar" depends="compile" description="Create a jar file">
+        <jar destfile="${jar.file}">
+            <fileset dir="${build.dir}"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+-->
+</project>
